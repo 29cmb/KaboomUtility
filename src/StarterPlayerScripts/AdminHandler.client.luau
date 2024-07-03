@@ -16,6 +16,12 @@ function refreshPlayerList()
         template.Visible = true
         template.Username.Text = plr.Name
         template.User.Image = `rbxthumb://type=AvatarHeadShot&id={plr.UserId}&w=420&h=420`
+
+        template.Click.MouseButton1Click:Connect(function()
+            if game.Players:FindFirstChild(plr.Name) then 
+                Admin.Dark.Main.SelectedPlayer = plr
+            end
+        end)
     end
 end
 
