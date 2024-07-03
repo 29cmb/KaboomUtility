@@ -4,10 +4,17 @@ Admin.Parent = game.Players.LocalPlayer.PlayerGui
 
 local playerList = Admin.Dark.Main.PlayerList
 local kick = Admin.Dark.Main.Kick
+local bring = Admin.Dark.Main.Bring
 
 kick.MouseButton1Click:Connect(function()
     if Admin.Dark.Main.SelectedPlayer.Value ~= nil then 
         game.ReplicatedStorage.Remotes.Kick:FireServer(Admin.Dark.Main.SelectedPlayer.Value)
+    end
+end)
+
+bring.MouseButton1Click:Connect(function()
+    if Admin.Dark.Main.SelectedPlayer.Value ~= nil then 
+        game.ReplicatedStorage.Remotes.Bring:FireServer(Admin.Dark.Main.SelectedPlayer.Value)
     end
 end)
 
