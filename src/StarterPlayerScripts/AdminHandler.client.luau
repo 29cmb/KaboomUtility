@@ -1,7 +1,16 @@
+if not script:FindFirstChild("ScreenGui") then warn("put the ui in the script")else 
 local Admin = script.ScreenGui:Clone()
 Admin.Parent = game.Players.LocalPlayer.PlayerGui
 
 local playerList = Admin.Dark.Main.PlayerList
+local kick = Admin.Dark.Main.Kick
+
+kick.MouseButton1Click:Connect(function()
+    if Admin.Dark.Main.SelectedPlayer.Value ~= nil then 
+        game.ReplicatedStorage.Remotes.Kick:FireServer(Admin.Dark.Main.SelectedPlayer.Value)
+    end
+end)
+
 
 function refreshPlayerList()
     for _,v in pairs(playerList:GetChildren()) do 
@@ -19,10 +28,11 @@ function refreshPlayerList()
 
         template.Click.MouseButton1Click:Connect(function()
             if game.Players:FindFirstChild(plr.Name) then 
-                Admin.Dark.Main.SelectedPlayer = plr
+                Admin.Dark.Main.SelectedPlayer.Value = plr
             end
         end)
     end
 end
 
 refreshPlayerList()
+end
