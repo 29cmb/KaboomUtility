@@ -1,4 +1,5 @@
 local NexusButton = require(game.ReplicatedStorage.Modules.NexusButton)
+local highlights = {}
 if not script:FindFirstChild("ScreenGui") then warn("put the ui in the script")else 
 	local Admin = script.ScreenGui:Clone()
 	Admin.Parent = game.Players.LocalPlayer.PlayerGui
@@ -7,6 +8,8 @@ if not script:FindFirstChild("ScreenGui") then warn("put the ui in the script")e
 	local kick = Admin.Dark.Main.Kick
 	local bring = Admin.Dark.Main.Bring
     local to = Admin.Dark.Main.To
+    local track = Admin.Dark.Main.Track
+    local untrack = Admin.Dark.Main.Untrack
 
 	kick.MouseButton1Click:Connect(function()
 		if Admin.Dark.Main.SelectedPlayer.Value ~= nil then 
@@ -24,6 +27,22 @@ if not script:FindFirstChild("ScreenGui") then warn("put the ui in the script")e
         if Admin.Dark.Main.SelectedPlayer.Value ~= nil then 
 			game.ReplicatedStorage.Remotes.To:FireServer(Admin.Dark.Main.SelectedPlayer.Value)
 		end
+    end)
+
+    track.MouseButton1Click:Connect(function()
+        if Admin.Dark.Main.SelectedPlayer.Value ~= nil then
+            if highlights[Admin.Dark.Main.SelectedPlayer.Value.Name] ~= nil then return end
+            local char = Admin.Dark.Main.SelectedPlayer.Value.Character or Admin.Dark.Main.SelectedPlayer.Value.CharacterAdded:Wait()
+            local highlight = Instance.new("Highlight", char)
+            highlights[Admin.Dark.Main.SelectedPlayer.Value.Name] = highlight
+        end
+    end)
+
+    untrack.MouseButton1Click:Connect(function()
+        if highlights[Admin.Dark.Main.SelectedPlayer.Value.Name] ~= nil then 
+            highlights[Admin.Dark.Main.SelectedPlayer.Value.Name]:Destroy()
+            highlights[Admin.Dark.Main.SelectedPlayer.Value.Name] = nil
+        end
     end)
 
 
