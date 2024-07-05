@@ -10,31 +10,32 @@ if not script:FindFirstChild("ScreenGui") then warn("put the ui in the script")e
     local to = Admin.Dark.Main.To
     local track = Admin.Dark.Main.Track
     local untrack = Admin.Dark.Main.Untrack
+	local SelectedPlayer = Admin.Dark.Main.SelectedPlayer
 
 	kick.MouseButton1Click:Connect(function()
-		if Admin.Dark.Main.SelectedPlayer.Value ~= nil then 
-			game.ReplicatedStorage.Remotes.Kick:FireServer(Admin.Dark.Main.SelectedPlayer.Value)
+		if SelectedPlayer.Value ~= nil then 
+			game.ReplicatedStorage.Remotes.Kick:FireServer(SelectedPlayer.Value)
 		end
 	end)
 
 	bring.MouseButton1Click:Connect(function()
-		if Admin.Dark.Main.SelectedPlayer.Value ~= nil then 
-			game.ReplicatedStorage.Remotes.Bring:FireServer(Admin.Dark.Main.SelectedPlayer.Value)
+		if SelectedPlayer.Value ~= nil then 
+			game.ReplicatedStorage.Remotes.Bring:FireServer(SelectedPlayer.Value)
 		end
 	end)
 
     to.MouseButton1Click:Connect(function()
-        if Admin.Dark.Main.SelectedPlayer.Value ~= nil then 
-			game.ReplicatedStorage.Remotes.To:FireServer(Admin.Dark.Main.SelectedPlayer.Value)
+        if SelectedPlayer.Value ~= nil then 
+			game.ReplicatedStorage.Remotes.To:FireServer(SelectedPlayer.Value)
 		end
     end)
 
     track.MouseButton1Click:Connect(function()
-        if Admin.Dark.Main.SelectedPlayer.Value ~= nil then
-            if highlights[Admin.Dark.Main.SelectedPlayer.Value.Name] ~= nil then return end
-            local char = Admin.Dark.Main.SelectedPlayer.Value.Character or Admin.Dark.Main.SelectedPlayer.Value.CharacterAdded:Wait()
+        if SelectedPlayer.Value ~= nil then
+            if highlights[SelectedPlayer.Value.Name] ~= nil then return end
+            local char = SelectedPlayer.Value.Character or SelectedPlayer.Value.CharacterAdded:Wait()
             local highlight = Instance.new("Highlight", char)
-            highlights[Admin.Dark.Main.SelectedPlayer.Value.Name] = highlight
+            highlights[SelectedPlayer.Value.Name] = highlight
         end
     end)
 
@@ -63,6 +64,7 @@ if not script:FindFirstChild("ScreenGui") then warn("put the ui in the script")e
 			template.Click.MouseButton1Click:Connect(function()
 				if game.Players:FindFirstChild(plr.Name) then 
 					Admin.Dark.Main.SelectedPlayer.Value = plr
+					Admin.Dark.Main.Username.Text = plr.DisplayName .." (@" .. plr.Name .. ")"
 				end
 			end)
 		end
