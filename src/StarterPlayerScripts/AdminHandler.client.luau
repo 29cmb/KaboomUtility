@@ -139,7 +139,7 @@ if not script:FindFirstChild("ScreenGui") then warn("put the ui in the script") 
 			TweenService:Create(frame, TweenInfo.new(0.75, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut), {Position = UDim2.new(0,0,0.3,0)}):Play()
 			TweenService:Create(frame2, TweenInfo.new(1.5, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut), {Position = UDim2.new(0,0,0,0)}):Play()
 			TweenService:Create(Admin.Dark, TweenInfo.new(0.75, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut), {BackgroundTransparency = 0.6}):Play()
-			TweenService:Create(Admin.Dark.Main, TweenInfo.new(0.75, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut), {Position = UDim2.new(0.5, 0, 0.5, 0)}):Play()
+			TweenService:Create(Admin.Dark.Main, TweenInfo.new(1.5, Enum.EasingStyle.Back, Enum.EasingDirection.InOut), {Position = UDim2.new(0.5, 0, 0.5, 0)}):Play()
 			task.wait(1.7)
 			debounce = false
 		end
@@ -153,7 +153,7 @@ if not script:FindFirstChild("ScreenGui") then warn("put the ui in the script") 
 			TweenService:Create(frame, TweenInfo.new(1.5, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut), {Position = UDim2.new(0,0,0,0)}):Play()
 			TweenService:Create(frame2, TweenInfo.new(0.75, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut), {Position = UDim2.new(0,0,0.3,0)}):Play()
 			TweenService:Create(Admin.Dark, TweenInfo.new(0.75, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut), {BackgroundTransparency = 1}):Play()
-			TweenService:Create(Admin.Dark.Main, TweenInfo.new(0.75, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut), {Position = UDim2.new(0.5, 0, 1.5, 0)}):Play()
+			TweenService:Create(Admin.Dark.Main, TweenInfo.new(1.5, Enum.EasingStyle.Back, Enum.EasingDirection.InOut), {Position = UDim2.new(0.5, 0, 1.5, 0)}):Play()
 			task.wait(1.7)
 			debounce = false
 		end
