@@ -1,6 +1,9 @@
-local NexusButton = require(game.ReplicatedStorage.Modules.NexusButton)
+-- 0.6 transparency
+
+local NexusButton = require(game.ReplicatedStorage.Modules:WaitForChild("NexusButton"))
 local highlights = {}
-if not script:FindFirstChild("ScreenGui") then warn("put the ui in the script")else 
+local TweenService = game:GetService("TweenService")
+if not script:FindFirstChild("ScreenGui") then warn("put the ui in the script") else 
 	local Admin = script.ScreenGui:Clone()
 	Admin.Parent = game.Players.LocalPlayer.PlayerGui
 
@@ -76,6 +79,37 @@ if not script:FindFirstChild("ScreenGui") then warn("put the ui in the script")e
 			end)
 		end
 	end
+	local frame = Instance.new("Frame", Admin)
+	frame.Size = UDim2.new(1,0,1,0)
+	frame.BackgroundTransparency = 1
 
-	refreshPlayerList()
+	local OpenButton = NexusButton.new()
+	OpenButton.Size = UDim2.new(0,200,0.1,0)
+	OpenButton.Position = UDim2.new(0,20,0.875,0)
+	OpenButton.BackgroundColor3 = Color3.new(0,170/255,255/255)
+	OpenButton.BorderColor3 = Color3.new(0,140/255,225/255)
+	OpenButton.BorderTransparency = 0.25
+	OpenButton.Parent = frame
+
+	--Add a text label.
+	local TextLabel = Instance.new("TextLabel")
+	TextLabel.Size = UDim2.new(1,0,0.9,0)
+	TextLabel.AnchorPoint = Vector2.new(0.5,0.5)
+	TextLabel.Position = UDim2.new(0.5,0,0.5,0)
+	TextLabel.BackgroundTransparency = 1
+	TextLabel.ZIndex = 5
+	TextLabel.Font = Enum.Font.SourceSansBold
+	TextLabel.TextColor3 = Color3.new(1,1,1)
+	TextLabel.TextStrokeColor3 = Color3.new(0,0,0)
+	TextLabel.TextStrokeTransparency = 0
+	TextLabel.TextScaled = true
+	TextLabel.Text = "Open"
+	TextLabel.Parent = OpenButton:GetAdornFrame()
+
+	OpenButton.MouseButton1Click:Connect(function()
+		refreshPlayerList()
+		TweenService:Create(frame, TweenInfo.new(0.75, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut), {Position = UDim2.new(0,0,0.3,0)}):Play()
+		TweenService:Create(Admin.Dark, TweenInfo.new(0.75, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut), {BackgroundTransparency = 0.6}):Play()
+		TweenService:Create(Admin.Dark.Main, TweenInfo.new(0.75, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut), {Position = UDim2.new(0.5, 0, 0.5, 0)}):Play()
+	end)
 end
