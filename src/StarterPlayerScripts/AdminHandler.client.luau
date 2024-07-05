@@ -82,6 +82,10 @@ if not script:FindFirstChild("ScreenGui") then warn("put the ui in the script") 
 	local frame = Instance.new("Frame", Admin)
 	frame.Size = UDim2.new(1,0,1,0)
 	frame.BackgroundTransparency = 1
+	local frame2 = Instance.new("Frame", Admin)
+	frame2.Size = UDim2.new(1,0,1,0)
+	frame2.BackgroundTransparency = 1
+	frame2.Position = UDim2.new(0,0,0.3,0)
 
 	local OpenButton = NexusButton.new()
 	OpenButton.Size = UDim2.new(0,200,0.1,0)
@@ -91,7 +95,14 @@ if not script:FindFirstChild("ScreenGui") then warn("put the ui in the script") 
 	OpenButton.BorderTransparency = 0.25
 	OpenButton.Parent = frame
 
-	--Add a text label.
+	local CloseButton = NexusButton.new()
+	CloseButton.Size = UDim2.new(0,200,0.1,0)
+	CloseButton.Position = UDim2.new(0,20,0.875,0)
+	CloseButton.BackgroundColor3 = Color3.new(170/255,0,0)
+	CloseButton.BorderColor3 = Color3.new(124/255, 0, 0)
+	CloseButton.BorderTransparency = 0.25
+	CloseButton.Parent = frame2
+
 	local TextLabel = Instance.new("TextLabel")
 	TextLabel.Size = UDim2.new(1,0,0.9,0)
 	TextLabel.AnchorPoint = Vector2.new(0.5,0.5)
@@ -106,9 +117,24 @@ if not script:FindFirstChild("ScreenGui") then warn("put the ui in the script") 
 	TextLabel.Text = "Open"
 	TextLabel.Parent = OpenButton:GetAdornFrame()
 
+	local TextLabel2 = Instance.new("TextLabel")
+	TextLabel2.Size = UDim2.new(1,0,0.9,0)
+	TextLabel2.AnchorPoint = Vector2.new(0.5,0.5)
+	TextLabel2.Position = UDim2.new(0.5,0,0.5,0)
+	TextLabel2.BackgroundTransparency = 1
+	TextLabel2.ZIndex = 5
+	TextLabel2.Font = Enum.Font.SourceSansBold
+	TextLabel2.TextColor3 = Color3.new(1,1,1)
+	TextLabel2.TextStrokeColor3 = Color3.new(0,0,0)
+	TextLabel2.TextStrokeTransparency = 0
+	TextLabel2.TextScaled = true
+	TextLabel2.Text = "Close"
+	TextLabel2.Parent = CloseButton:GetAdornFrame()
+
 	OpenButton.MouseButton1Click:Connect(function()
 		refreshPlayerList()
 		TweenService:Create(frame, TweenInfo.new(0.75, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut), {Position = UDim2.new(0,0,0.3,0)}):Play()
+		TweenService:Create(frame2, TweenInfo.new(1.5, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut), {Position = UDim2.new(0,0,0,0)}):Play()
 		TweenService:Create(Admin.Dark, TweenInfo.new(0.75, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut), {BackgroundTransparency = 0.6}):Play()
 		TweenService:Create(Admin.Dark.Main, TweenInfo.new(0.75, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut), {Position = UDim2.new(0.5, 0, 0.5, 0)}):Play()
 	end)
