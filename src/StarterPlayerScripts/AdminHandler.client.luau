@@ -6,6 +6,7 @@ if not script:FindFirstChild("ScreenGui") then warn("put the ui in the script")e
 
 	local playerList = Admin.Dark.Main.PlayerList
 	local kick = Admin.Dark.Main.Kick
+	local ban = Admin.Dark.Main.Ban
 	local bring = Admin.Dark.Main.Bring
     local to = Admin.Dark.Main.To
     local track = Admin.Dark.Main.Track
@@ -15,6 +16,12 @@ if not script:FindFirstChild("ScreenGui") then warn("put the ui in the script")e
 	kick.MouseButton1Click:Connect(function()
 		if SelectedPlayer.Value ~= nil then 
 			game.ReplicatedStorage.Remotes.Kick:FireServer(SelectedPlayer.Value)
+		end
+	end)
+
+	ban.MouseButton1Click:Connect(function()
+		if SelectedPlayer.Value ~= nil then 
+			game.ReplicatedStorage.Remotes.Ban:FireServer(SelectedPlayer.Value)
 		end
 	end)
 
@@ -40,9 +47,9 @@ if not script:FindFirstChild("ScreenGui") then warn("put the ui in the script")e
     end)
 
     untrack.MouseButton1Click:Connect(function()
-        if highlights[Admin.Dark.Main.SelectedPlayer.Value.Name] ~= nil then 
-            highlights[Admin.Dark.Main.SelectedPlayer.Value.Name]:Destroy()
-            highlights[Admin.Dark.Main.SelectedPlayer.Value.Name] = nil
+        if highlights[SelectedPlayer.Value.Name] ~= nil then 
+            highlights[SelectedPlayer.Value.Name]:Destroy()
+            highlights[SelectedPlayer.Value.Name] = nil
         end
     end)
 
